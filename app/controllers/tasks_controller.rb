@@ -5,14 +5,14 @@ class TasksController < ApplicationController
   before_action :authorize_user!, only: [:index, :show, :edit, :update, :destroy]
 
   def index
-    @tasks = @list.task
+    @tasks = @list.tasks
   end
 
   def show
   end
 
   def new
-    @task = @list.task.new
+    @task = @list.tasks.new
   end
 
   def edit
@@ -49,6 +49,29 @@ class TasksController < ApplicationController
     end
   end
 
+  def export
+    TasksExportJob.perform_async(@list.id)
+    redirect_to list_tasks_path, notice: 'Exportação iniciada!'
+  end
+
+  def download
+
+    filename = "tarefas_#{@list.user.id}_#{@list.title}.xlsx"
+    files_name = Dir.entries("tmp/files")
+
+    files_name.delete(".")
+    files_name.delete("..")
+
+    if files_name.any? { |file| file == filename}
+
+      file_path = Rails.root.join('tmp/files', filename)
+      file = File.binread(file_path)
+      send_data file, type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', filename: 'tarefas.xlsx', disposition: 'attachment'  
+    else
+      redirect_to list_tasks_path, alert: 'Clique em Exportar ou Aguarde para baixar!'
+    end    
+  end
+
   private
 
     def set_list
@@ -56,7 +79,7 @@ class TasksController < ApplicationController
     end
 
     def set_task
-      @task = @list.task.find(params[:id])
+      @task = @list.tasks.find(params[:id])
     end
 
     def authorize_user!

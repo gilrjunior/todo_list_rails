@@ -21,3 +21,8 @@
   Voltar as Listas
 <% end %>
 
+<div class="xlsx-btn">
+  <%= button_to 'Exportar Tarefas', export_list_tasks_path, method: :get, class: 'action-button' %>
+  <%= button_to 'Importar Tarefas', download_list_tasks_path, method: :get, class: 'action-button' %>
+  <%= button_to 'Baixar Arquivo', download_list_tasks_path, method: :get, class: 'action-button' %>
+</div>

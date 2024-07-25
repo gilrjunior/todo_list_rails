@@ -7,6 +7,8 @@ Bundler.require(*Rails.groups)
 module TodoList
   class Application < Rails::Application
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.load_defaults 7.1
     config.autoload_lib(ignore: %w(assets tasks))
     

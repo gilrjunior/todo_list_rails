@@ -6,14 +6,14 @@ class ListsController < ApplicationController
 
   
   def index
-    @lists = @user.list
+    @lists = @user.lists
   end
 
   def show
   end
 
   def new
-    @list = @user.list.new
+    @list = @user.lists.new
     
   end
 
@@ -48,6 +48,28 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to lists_url, notice: "Lista deletada com sucesso!" }
     end
+  end
+
+  def export
+      ListsExportJob.perform_async(@user.id)
+      redirect_to lists_path, notice: 'Exportação iniciada!'
+  end
+
+  def download
+
+    files_name = Dir.entries("tmp/files")
+
+    files_name.delete(".")
+    files_name.delete("..")
+
+    if files_name.any? { |file| file == "listas_#{@user.id}.xlsx" }
+
+      file_path = Rails.root.join('tmp', 'files', "listas_#{@user.id}.xlsx")
+      file = File.binread(file_path)
+      send_data file, type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', filename: 'listas.xlsx', disposition: 'attachment'  
+    else
+      redirect_to lists_path, alert: 'Clique em Exportar ou Aguarde para baixar!'
+    end    
   end
 
   private

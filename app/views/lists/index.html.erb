@@ -22,3 +22,13 @@
 <%= button_to new_list_path, method: :get, class: 'action-button' do %>
   Nova Lista
 <% end %>
+
+<div class="xlsx-btn">
+  <%= button_to 'Exportar Listas', export_lists_path, method: :get, class: 'action-button' %>
+
+  <%= button_to 'Baixar Arquivo', download_lists_path, method: :get, class: 'action-button' %>
+</div>
+
+
+
+

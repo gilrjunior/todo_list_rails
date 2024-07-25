@@ -265,3 +265,11 @@ a {
     display: flex;
     flex-direction: column;
 }
+
+.xlsx-btn {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
