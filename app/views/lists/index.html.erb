@@ -1,0 +1,24 @@
+<h1>Listas</h1>
+
+<div id="lists">
+
+  
+  <% @lists.each do |list| %>
+    <div class=item>
+      <%= render list %>
+        <div>
+          <%= button_to list_tasks_path(list), method: :get, class: 'action-button' do %>
+            Tarefas
+          <% end %>
+          <%= button_to list_path(list), method: :get, class: 'action-button' do %>
+            Visualizar
+          <% end %>
+        </div>
+    </div>
+  <% end %>
+  
+</div>
+
+<%= button_to new_list_path, method: :get, class: 'action-button' do %>
+  Nova Lista
+<% end %>

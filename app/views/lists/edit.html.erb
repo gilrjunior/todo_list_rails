@@ -1,0 +1,14 @@
+<h1>Editar Lista</h1>
+
+<%= render "form", list: @list %>
+
+<br>
+
+<div>
+  <%= button_to list_path(@list), method: :get, class: 'action-button' do %>
+    Visualizar
+  <% end %>
+  <%= button_to lists_path, method: :get, class: 'action-button' do %>
+    Voltar
+  <% end %>
+</div>

@@ -1,0 +1,267 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Titillium+Web&display=swap');
+
+
+ *{
+    margin: 0;
+    padding: 0;
+    font-family: Sora;
+    font-weight: 400;
+  }
+  
+  body{
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    overflow-x: hidden;
+  }
+  
+  ul{
+    list-style: none;
+  }
+  
+  .container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 800px;
+    margin: auto;
+  }
+
+.box {
+
+    width: 700px;
+    background-color: #bbbbbb80;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-height: 700px;
+
+}
+
+.auth-title, h1, .style-title {
+    font-size: 2em;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.field {
+    margin-bottom: 15px;
+}
+
+.input-auth {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-style {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.auth-label, strong, .style-label {
+    color: #000000;
+}
+
+.auth-input, .style-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.auth-checkbox {
+    margin-right: 10px;
+}
+
+.auth-button, .style-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.auth-button:hover, .style-button:hover {
+    background-color: #727272;
+    color: white;
+}
+
+.auth-links {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+.item{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top: #a3a3a3 1px solid;
+    border-bottom: #a3a3a3 0.5px solid;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.text-item {
+
+    width: 400px;
+    word-wrap: break-word;       /* Quebra palavras longas */
+    word-break: break-all;       /* Quebra palavras longas em qualquer ponto */
+    white-space: normal;         /* Permite quebras de linha normais */
+    overflow-wrap: break-word;   /* Outra maneira de forçar quebra de palavras longas */
+
+}
+
+.item:hover{
+
+    background-color: rgba(165, 164, 164, 0.479);
+
+}
+
+
+.delete-button {
+
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    background: red;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+}
+
+.action-button {
+
+    cursor: pointer;
+
+    border: none;
+    border-radius: 50px;
+    background: #3ea890;
+
+    font-size: 16px;
+    color: white;
+
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.cards-box{
+
+    width: 100%;
+    height: 100px;
+
+}
+
+.alert-box{
+
+    margin: 10px auto;
+    width: 90%;
+    background-color: rgba(255, 0, 0, 0.342);
+    font-family: Sora;
+    color: white;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+.notice-box{
+
+    margin: 10px auto;
+    width: 90%;
+    background-color: rgba(0, 128, 0, 0.363);
+    font-family: Sora;
+    color: white;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3ea890;
+    color: white;
+}
+
+.navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-icons {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-icons i {
+    width: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.navbar-icons i:hover {
+    color: #ddd;
+}
+
+.nav-button{
+
+    border: none;
+    background: none;
+
+
+}
+
+a {
+
+    text-decoration: none;
+    color: black;
+
+}
+
+.field_with_errors{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}

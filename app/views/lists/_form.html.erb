@@ -1,0 +1,34 @@
+<%= form_with(model: list) do |form| %>
+  <% if list.errors.any? %>
+    <div style="color: red">
+      <h2>Erros ao tentar salvar a Lista:</h2>
+
+      <ul>
+        <% list.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="input-style">
+      <%= form.label :title, "Título", style: "display: block", class: "style-label" %>
+      <%= form.text_field :title, class: "style-input" %>
+    </div>
+  </div>
+
+  <div>
+    <div class="input-style">
+      <%= form.label :description, "Descrição", style: "display: block", class: "style-label" %>
+      <%= form.text_area :description, class: "style-input" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.hidden_field :user_id, value: list.user_id %>
+  </div>
+
+    <%= form.submit "Salvar", class: "style-button" %>
+
+<% end %>

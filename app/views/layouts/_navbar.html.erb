@@ -1,0 +1,18 @@
+<nav class="navbar">
+      <div>
+        <a class="navbar-title" href="/lists">To Do List</a>
+      </div>
+        <div class="navbar-icons">
+            <% if user_signed_in? %>
+              <%= button_to lists_path, method: :get, class: "nav-button" do %>
+                <i class="fas fa-home"></i>
+              <% end %>
+              <%= button_to edit_user_registration_path, method: :get, class: "nav-button" do %>
+                <i class="fas fa-user"></i>
+              <% end %>
+              <%= button_to destroy_user_session_path, method: :delete, class: "nav-button" do %>
+                <i class="fas fa-sign-out-alt"></i>
+              <% end %>
+            <% end %>
+        </div>
+    </nav>

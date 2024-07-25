@@ -1,0 +1,9 @@
+<h1>Nova Lista</h1>
+
+<%= render "form", list: @list %>
+
+<br>
+
+<%= button_to lists_path, method: :get, class: 'action-button' do %>
+  Voltar
+<% end %>

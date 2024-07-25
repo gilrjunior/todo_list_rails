@@ -1,0 +1,47 @@
+<%= form_with(model: [@list, @task]) do |form| %>
+  <% if task.errors.any? %>
+    <div style="color: red">
+      <h2>Erros ao tentar salvar a Tarefa:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="input-style">
+      <%= form.label :title, "Título", style: "display: block", class: "style-label" %>
+      <%= form.text_field :title, class: "style-input" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block", class: "style-label" %>
+    <div class="input-style">
+      <div>
+        <%= form.radio_button :status, "do" %>
+        <%= form.label :status_do, "Pendente" %>
+      </div>
+      <div>
+        <%= form.radio_button :status, "doing" %>
+        <%= form.label :status_doing, "Em Progesso" %>
+      </div>
+      <div>
+        <%= form.radio_button :status, "done" %>
+        <%= form.label :status_done, "Finalizada" %>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <%= form.hidden_field :list_id, value: @list.id %>
+  </div>
+
+  <div>
+    <%= form.submit "Salvar", class: "style-button" %>
+  </div>
+<% end %>

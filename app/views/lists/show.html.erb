@@ -1,0 +1,16 @@
+<div class=item>
+  <%= render @list %>
+
+  <div>
+    <%= button_to edit_list_path(@list), method: :get, class: 'action-button' do %>
+      Editar
+    <% end %>
+
+    <%= button_to lists_path, method: :get, class: 'action-button' do %>
+      Voltar
+    <% end %>
+
+    <%= button_to "Deletar Lista", @list, method: :delete, class: "delete-button" %>
+
+  </div>
+</div>

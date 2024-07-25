@@ -1,0 +1,15 @@
+<div id="<%= dom_id task %>">
+
+  <div class="text-item">
+    <p>
+      <strong>Título:</strong>
+      <%= task.title %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= I18n.t("activerecord.statuses.task.#{task.status}", default: task.status.humanize) %>
+    </p>
+
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<h1 class="auth-title">Entrar</h1>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'login-form' }) do |f| %>
+    
+    <% if resource.errors.any? %>
+    <div style="color: red">
+      <h2>Erros ao tentar salvar o Usuário:</h2>
+
+      <ul>
+        <% resource.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    
+    <div class="field">
+        <div class="input-auth">
+            <%= f.label :email, "Email", class: 'auth-label' %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "auth-input" %>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="input-auth">
+            <%= f.label :password, "Senha", class: 'auth-label' %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: "auth-input" %>
+        </div>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+        <div class="field">
+            <%= f.check_box :remember_me, id: "remember_me", class: "auth-checkbox" %>
+            <%= f.label :remember_me, "Lembrar de mim", class: 'auth-label' %>
+        </div>
+    <% end %>
+
+    <div class="actions">
+        <%= f.submit "Entrar", class: "auth-button" %>
+    </div>
+<% end %>
+
+<div class="auth-links">
+    <%= render "devise/shared/links" %>
+</div>
+
