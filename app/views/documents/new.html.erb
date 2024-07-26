@@ -1,0 +1,30 @@
+<h1>Importar Excel de Tarefas</h1>
+
+<%= link_to "Baixar template", template_list_documents_path, class: "link"  %>
+</br>
+</br>
+
+<%= form_with(model: @document, url: list_documents_path) do |form| %>
+    <% if @document.errors.any? %>
+      <div id="error_explanation">
+        <h2>Erros ao tentar salvar o Arquivo:</h2>
+        <ul>
+          <% @document.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="input-style">
+      <%= form.label :file, "Arquivo", style: "display: block", class: "style-label" %>
+      <%= form.file_field :file, class: "style-input"%>
+    </div>
+  
+    <%= form.submit "Salvar", class: "style-button" %>
+
+  <% end %>
+
+  <%= button_to list_tasks_path, method: :get, class: 'action-button' do %>
+    Voltar
+  <% end %>

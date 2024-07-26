@@ -1,17 +1,28 @@
 Rails.application.routes.draw do
-  get 'home/index'
+
   resources :lists do
-    resources :tasks do
-      collection do
-        get 'export'
-        get 'download'
-      end
-    end
+
     collection do
       get 'export'
       get 'download'
     end
+
+    resources :tasks do
+
+      collection do
+        get 'export'
+        get 'download'
+
+        resources :documents, only: [:new, :create]  do
+          collection do
+            get :template
+          end
+        end
+
+      end
+    end
   end
+
   devise_for :users
   
   root to: 'home#index'

@@ -10,23 +10,23 @@ class TasksExportJob
 
       temp_file_path = Rails.root.join('tmp/files', "tarefas_#{list.user.id}_#{list.title}.xlsx")
 
-      book = Spreadsheet::Workbook.new 
+      p = Axlsx::Package.new
+      workbook = p.workbook
 
-      sheet = book.create_worksheet
-      
-      sheet.row(0).push('Lista','Título', 'Status')
+      workbook.add_worksheet(name: 'Listas') do |sheet|
+        sheet.add_row ['Lista','Título', 'Status']
 
-      i=1
+        tasks.each do |task|
 
-      tasks.each do |task|
+          sheet.add_row [task.list.title ,task.title, I18n.t("activerecord.statuses.task.#{task.status}", default: task.status.humanize)]
 
-        sheet.row(i).push(task.list.title ,task.title, I18n.t("activerecord.statuses.task.#{task.status}", default: task.status.humanize))
-        i+=1
+        end
 
       end
 
-      book.write(temp_file_path)
+      p.serialize(temp_file_path)
 
       temp_file_path
+
   end
 end

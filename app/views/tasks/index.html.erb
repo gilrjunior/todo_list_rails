@@ -1,5 +1,15 @@
 <h1>Tarefas</h1>
 
+<div class="xlsx-btn">
+  <%= button_to 'Importar Tarefas', new_list_document_path, method: :get, class: 'action-button' %>
+  <%= button_to 'Exportar Tarefas', export_list_tasks_path, method: :get, class: 'action-button' %>
+  <%= button_to 'Baixar Arquivo', download_list_tasks_path, method: :get, class: 'action-button' %>
+</div>
+
+<%= button_to new_list_task_path, method: :get, class: 'action-button' do %>
+  Nova Tarefa
+<% end %>
+
 <div id="tasks">
   <% @tasks.each do |task| %>
     <div class=item>
@@ -13,16 +23,6 @@
   <% end %>
 </div>
 
-<%= button_to new_list_task_path, method: :get, class: 'action-button' do %>
-  Nova Tarefa
-<% end %>
-
 <%= button_to lists_path, method: :get, class: 'action-button' do %>
   Voltar as Listas
 <% end %>
-
-<div class="xlsx-btn">
-  <%= button_to 'Exportar Tarefas', export_list_tasks_path, method: :get, class: 'action-button' %>
-  <%= button_to 'Importar Tarefas', download_list_tasks_path, method: :get, class: 'action-button' %>
-  <%= button_to 'Baixar Arquivo', download_list_tasks_path, method: :get, class: 'action-button' %>
-</div>

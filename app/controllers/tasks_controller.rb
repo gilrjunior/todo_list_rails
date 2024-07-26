@@ -22,31 +22,25 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to list_tasks_url(@task.list_id), notice: "Tarefa criada com sucesso!" }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to list_tasks_url(@task.list_id), notice: "Tarefa criada com sucesso!"
+    else
+      render :new, status: :unprocessable_entity
     end
+
   end
 
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to list_tasks_url(@task.list_id), notice: "Tarefa atualizada com sucesso!" }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @task.update(task_params)
+      redirect_to list_tasks_url(@task.list_id), notice: "Tarefa atualizada com sucesso!"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @task.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to list_tasks_url, notice: "Tarefa deletada com sucesso!" }
-    end
+      redirect_to list_tasks_url, notice: "Tarefa deletada com sucesso!"
   end
 
   def export

@@ -23,31 +23,24 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    respond_to do |format|
       if @list.save
-        format.html { redirect_to list_url(@list), notice: "Lista criada com sucesso!" }
+        redirect_to list_url(@list), notice: "Lista criada com sucesso!"
       else
-        format.html { render :new, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
-    end
   end
 
   def update
-    respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to list_url(@list), notice: "Lista atualizada com sucesso!" }
+        redirect_to list_url(@list), notice: "Lista atualizada com sucesso!"
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
-    end
   end
 
   def destroy
     @list.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to lists_url, notice: "Lista deletada com sucesso!" }
-    end
+      redirect_to lists_url, notice: "Lista deletada com sucesso!" 
   end
 
   def export

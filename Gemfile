@@ -28,7 +28,9 @@ gem "jbuilder"
 
 gem 'devise'
 gem 'sidekiq'
-gem 'spreadsheet'
+gem 'caxlsx'
+gem 'simple_xlsx_reader'
+gem 'activestorage'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

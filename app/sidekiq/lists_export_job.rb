@@ -1,4 +1,7 @@
+require 'axlsx'
+
 class ListsExportJob
+  
   include Sidekiq::Job
 
   sidekiq_options queue: 'lists'
@@ -9,22 +12,21 @@ class ListsExportJob
 
       temp_file_path = Rails.root.join('tmp/files', "listas_#{user_id}.xlsx")
 
-      book = Spreadsheet::Workbook.new 
+      p = Axlsx::Package.new
+      workbook = p.workbook
 
-      sheet = book.create_worksheet 
+      workbook.add_worksheet(name: 'Listas') do |sheet|
+        sheet.add_row ['Título', 'Descrição']
 
-      sheet.row(0).push('Título', 'Descrição') 
+        lists.each do |list|
 
-      i=1
+          sheet.add_row [list.title.to_s, list.description.to_s]
 
-      lists.each do |list|
-
-        sheet.row(i).push(list.title.to_s, list.description.to_s)
-        i+=1
+        end
 
       end
 
-      book.write(temp_file_path)
+      p.serialize(temp_file_path)
 
       temp_file_path
 
