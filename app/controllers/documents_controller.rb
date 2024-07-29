@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  before_action :authorize_user!
 
   def new
     @document = Document.new
@@ -28,6 +29,11 @@ class DocumentsController < ApplicationController
     file_path = Rails.root.join('public', filename)
     file = File.binread(file_path)
     send_data file, type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', filename: filename, disposition: 'attachment'   
+  end
+
+  def authorize_user!
+    @list = List.find(params[:list_id])
+    redirect_to lists_path, alert: 'Você não tem acesso!' unless @list.user == current_user
   end
 
   def document_params
